@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>TimeZoneMapper</id>
+    <version>1.0.0.0</version>
+    <authors>RobIII</authors>
+    <owners>RobIII</owners>
+    <projectUrl></projectUrl>
+    <iconUrl>http://riii.nl/tzmapperlogo</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Library for mapping *N*X TimeZone ID's to windows TimeZoneInfo classes.</description>
+    <summary>
+      Provides *N*X TimeZone ID to .NET's TimeZoneInfo mappings. Information is based on Unicode Inc's CLDR data files.
+    </summary>
+    <releaseNotes>
+      Initial release
+    </releaseNotes>
+  </metadata>
+  <files>
+    <file src="\bin\Release\TimeZoneMapper.dll" target="lib" />
+    <file src="\bin\Release\TimeZoneMapper.XML" target="lib" />
+    <file src="..\documentation\TimeZoneMapper.chm" target="content" />
+  </files>
+</package>
