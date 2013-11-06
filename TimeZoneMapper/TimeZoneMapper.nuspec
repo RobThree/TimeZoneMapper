@@ -5,7 +5,7 @@
     <version>1.0.0.0</version>
     <authors>RobIII</authors>
     <owners>RobIII</owners>
-    <projectUrl></projectUrl>
+    <projectUrl>https://github.com/RobThree/TimeZoneMapper</projectUrl>
     <iconUrl>http://riii.nl/tzmapperlogo</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Library for mapping *N*X TimeZone ID's to windows TimeZoneInfo classes.</description>
