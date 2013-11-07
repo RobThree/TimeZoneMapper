@@ -1,6 +1,4 @@
-﻿//TODO: Add ProjectURL to nuspec file.
-
-namespace TimeZoneMapper
+﻿namespace TimeZoneMapper
 {
     using System;
     using TimeZoneMapper.TZMappers;

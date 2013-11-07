@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<supplementalData>
+  <version number="TEST"/>
+  <generation date="1970-01-01"/>
+  <windowsZones>
+    <mapTimezones otherVersion="xyz" typeVersion="zyx">
+      <mapZone other="UTC" territory="001" type="Test/A"/>
+      <mapZone other="UTC" territory="ZZ" type="Test/A"/>
+
+      <mapZone other="W. Europe Standard Time" territory="ZZ" type="Test/B"/>
+
+      <mapZone other="NONEXSISTING" territory="ZZ" type="Test/C"/>
+
+    </mapTimezones>
+  </windowsZones>
+</supplementalData>

@@ -3,7 +3,7 @@
   <metadata>
     <id>TimeZoneMapper</id>
     <title>TimeZoneMapper</title>
-    <version>1.0.0.0</version>
+    <version>1.1.0.0</version>
     <authors>RobIII</authors>
     <owners>RobIII</owners>
     <projectUrl>https://github.com/RobThree/TimeZoneMapper</projectUrl>
@@ -14,7 +14,8 @@
       Provides *N*X TimeZone ID to .NET's TimeZoneInfo mappings. Information is based on Unicode Inc's CLDR data files.
     </summary>
     <releaseNotes>
-      Initial release
+      * Fixed bug that caused an exception when non-existing TimeZones were tried to be resolved
+      * Added CustomTZMapper that user can use to pass custom CLDR into
     </releaseNotes>
     <tags>timezone cldr</tags>
   </metadata>

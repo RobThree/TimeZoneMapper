@@ -50,6 +50,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="TZMappers\BaseTZMapper.cs" />
+    <Compile Include="TZMappers\CustomTZMapper.cs" />
     <Compile Include="TZMappers\DefaultValuesTZMapper.cs" />
     <Compile Include="TZMappers\ITZMapper.cs" />
     <Compile Include="TZMappers\OnlineValuesTZMapper.cs" />

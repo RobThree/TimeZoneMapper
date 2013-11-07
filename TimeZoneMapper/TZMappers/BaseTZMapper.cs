@@ -35,13 +35,35 @@
             var root = XDocument.Parse(xmldata).Descendants("mapTimezones").First();
             _mappings = root.Descendants("mapZone")
                 .Where(n => !n.Attribute("territory").Value.Equals("001"))
-                .SelectMany(n => n.Attribute("type").Value.Split(new[] { ' ' }), (n, t) => new { TZID = t, TZ = TimeZoneInfo.FindSystemTimeZoneById(n.Attribute("other").Value) })
+                .SelectMany(n => n.Attribute("type").Value.Split(new[] { ' ' }), (n, t) => new { TZID = t, TZ = TryGetTimeZone(n.Attribute("other").Value) })
+                .Where(n => n.TZ != null)   //Filter out "not found" TimeZones
                 .OrderBy(n => n.TZID)
                 .ToDictionary(n => n.TZID, v => v.TZ, StringComparer.OrdinalIgnoreCase);
 
-            this.TZIDVersion = root.Attribute("typeVersion").Value;
-            this.TZVersion = root.Attribute("otherVersion").Value;
+            this.TZIDVersion = root.Attribute("typeVersion").GetSafeValue();
+            this.TZVersion = root.Attribute("otherVersion").GetSafeValue();
             this.Version = string.Format("{0}.{1}", this.TZIDVersion, this.TZVersion);
+        }
+
+        /// <summary>
+        /// Retrieves a TimeZone by it's Id, handling exceptions and returning null instead for invalid / not found Id's.
+        /// </summary>
+        /// <param name="id">The time zone identifier, which corresponds to the Id property.</param>
+        /// <returns>Returns the TimeZone when found, null otherwise.</returns>
+        private static TimeZoneInfo TryGetTimeZone(string id)
+        {
+            try
+            {
+                return TimeZoneInfo.FindSystemTimeZoneById(id);
+            }
+            catch (TimeZoneNotFoundException)
+            {
+                return null;
+            }
+            catch (InvalidTimeZoneException)
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -72,6 +94,16 @@
         public TimeZoneInfo[] GetAvailableTimeZones()
         {
             return _mappings.Values.Distinct().ToArray();
+        }
+    }
+
+    static class XAttributeExtensions
+    {
+        public static string GetSafeValue(this XAttribute att)
+        {
+            if (att == null)
+                return null;
+            return att.Value;
         }
     }
 }
