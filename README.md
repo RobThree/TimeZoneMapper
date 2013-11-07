@@ -28,6 +28,34 @@ This will try to download the CLDR data from the Unicode Consortium and when tha
 
 Note that an HTTP request will be made only once for as long as the TimeZoneMapper is around (usually the lifetime of the application). Also note that the TimeZoneMapper is **case-*in*sensitive**; the TimeZone ID `Europe/Amsterdam` works just as well as `EUROPE/AMSTERDAM` or `eUrOpE/AmStErDaM`.
 
+Finally, when you want control over the actual CLDR data and where it is stored, how you cache it etc. you can use the `CustomValuesTZMapper`. Be sure to add the `TimeZoneMapper.TZMappers` namespace if you want to use this class. This class' constructor has 3 overloads demonstrated below:
+
+```c#
+    // Overload 1: CustomValuesTZMapper(string, Encoding)
+    
+    // Load XML from file
+    var mapper = new CustomValuesTZMapper("myfile.xml", Encoding.UTF8);
+    TimeZoneInfo tzi = mapper.MapTZID("Europe/Amsterdam");
+````    
+```c#
+    // Overload 2: CustomValuesTZMapper(string)
+    
+    // Get XML from database, cache, online resource, file, etc. or, in this case, "hard-coded":
+    string cldrdata = "<supplementalData><windowsZones><mapTimezones otherVersion=\"xyz\" typeVersion=\"zyx\">..."; 
+    var mapper = new CustomValuesTZMapper(cldrdata);
+    TimeZoneInfo tzi = mapper.MapTZID("Europe/Amsterdam");
+````
+```c#
+    // Overload 3: CustomValuesTZMapper(Stream)
+    
+    // Use a Stream
+    using (var mystream = new GZipStream(File.OpenRead("myfile.gz"), CompressionMode.Decompress))
+    {
+        var mapper = new CustomValuesTZMapper(mystream);
+        TimeZoneInfo tzi = mapper.MapTZID("Europe/Amsterdam");
+    }
+````
+All you need to do is ensure the data you supply to the CustomValuesTZMapper is valid CLDR data (see [this example](TimeZoneMapper/ResourceFiles/windowsZones.xml))
 # Future
 
-I will try to update the built-in resource every now-and-then. I am also thinking about another TZMapper that you can supply with your own resource so that caching of resources can be handled so you can keep a local copy of a resource around and update it as you see fit.
+I will try to update the built-in resource every now-and-then.
