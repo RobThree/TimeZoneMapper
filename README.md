@@ -3,7 +3,7 @@
 
 Library for mapping \*N\*X TimeZone ID's (e.g. `Europe/Amsterdam`) to .Net's [TimeZoneInfo](http://msdn.microsoft.com/en-us/library/system.timezoneinfo.aspx) classes. This mapping is one-way since, for example, `Europe/Amsterdam` maps to `W. Europe Standard Time` but `W. Europe Standard Time` could map to `Europe/Stockholm` or `Arctic/Longyearbyen` just as easily.
 
-The library provides a simple static `TimeZoneMap` object that exposes 3 types of mappers, each described below under [usage](#usage). The project is kept up-to-date with the latest mapping information as much as I can, but TimeZoneMapper can use the latest mapping information available online completely transparantly.
+The library provides a simple static `TimeZoneMap` object that exposes 3 types of mappers, each described below under [usage](#usage). The project is kept up-to-date with the latest mapping information as much as I can, but TimeZoneMapper can use the latest mapping information available online completely transparently.
 
 TimeZoneMapper is available as a [NuGet package](https://www.nuget.org/packages/TimeZoneMapper/) and comes with (basic) documentation in the form of a Windows Helpfile (.chm).
 
