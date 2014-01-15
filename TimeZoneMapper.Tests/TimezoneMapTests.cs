@@ -93,6 +93,18 @@ namespace TimeZoneMapper.Tests
         }
 
         [TestMethod]
+        public void SpaceSeparatedTimeZonesAreParsedCorrectly()
+        {
+            var mapper = new CustomValuesTZMapper(File.ReadAllText("testcldr.xml"));
+
+            Assert.AreEqual(TimeZoneInfo.FindSystemTimeZoneById("Alaskan Standard Time"), mapper.MapTZID("America/Anchorage"));
+            Assert.AreEqual(TimeZoneInfo.FindSystemTimeZoneById("Alaskan Standard Time"), mapper.MapTZID("America/Juneau"));
+            Assert.AreEqual(TimeZoneInfo.FindSystemTimeZoneById("Alaskan Standard Time"), mapper.MapTZID("America/Nome"));
+            Assert.AreEqual(TimeZoneInfo.FindSystemTimeZoneById("Alaskan Standard Time"), mapper.MapTZID("America/Sitka"));
+            Assert.AreEqual(TimeZoneInfo.FindSystemTimeZoneById("Alaskan Standard Time"), mapper.MapTZID("America/Yakutat"));
+        }
+
+        [TestMethod]
         public void CustomTZMapperStringConstructorPassingPath()
         {
             var mapper = new CustomValuesTZMapper("testcldr.xml", Encoding.UTF8);

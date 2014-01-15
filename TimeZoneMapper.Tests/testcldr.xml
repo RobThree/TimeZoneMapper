@@ -11,6 +11,7 @@
 
       <mapZone other="NONEXSISTING" territory="ZZ" type="Test/C"/>
 
+      <mapZone other="Alaskan Standard Time" territory="US" type="America/Anchorage America/Juneau America/Nome America/Sitka America/Yakutat"/>
     </mapTimezones>
   </windowsZones>
 </supplementalData>

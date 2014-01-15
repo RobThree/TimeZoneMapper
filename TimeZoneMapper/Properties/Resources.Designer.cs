@@ -74,7 +74,7 @@ namespace TimeZoneMapper.Properties {
         ///	&lt;generation date=&quot;$Date$&quot;/&gt;
         ///
         ///	&lt;windowsZones&gt;
-        ///		&lt;mapTimeZones otherVersion=&quot;7dd0003&quot; typeVersion=&quot;2013d&quot;&gt;
+        ///		&lt;mapTimezones otherVersion=&quot;7de0000&quot; typeVersion=&quot;2013i&quot;&gt;
         ///
         ///			&lt;!-- (UTC-12:00) Internatio [rest of string was truncated]&quot;;.
         /// </summary>
