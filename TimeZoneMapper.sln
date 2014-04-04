@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeZoneMapper", "TimeZoneMapper\TimeZoneMapper.csproj", "{CAD1C44E-176F-492C-BA74-92A26531D0C7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DC815F93-760E-45F3-9413-BE9A4BEEB01F}"
 	ProjectSection(SolutionItems) = preProject
 		TimeZoneMapper\buildnugetpkg.cmd = TimeZoneMapper\buildnugetpkg.cmd
+		LICENSE = LICENSE
+		README.md = README.md
 		TimeZoneMapper\TimeZoneMapper.nuspec = TimeZoneMapper\TimeZoneMapper.nuspec
 		TimeZoneMapper\TimeZoneMapper.shfbproj = TimeZoneMapper\TimeZoneMapper.shfbproj
 	EndProjectSection
