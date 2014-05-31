@@ -59,3 +59,5 @@ All you need to do is ensure the data you supply to the CustomValuesTZMapper is 
 # Future
 
 I will try to update the built-in resource every now-and-then.
+
+[![Build status](https://ci.appveyor.com/api/projects/status/ccg6kh3n4as3d2cy)](https://ci.appveyor.com/project/RobIII/timezonemapper)
