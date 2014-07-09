@@ -3,7 +3,7 @@
   <metadata>
     <id>TimeZoneMapper</id>
     <title>TimeZoneMapper</title>
-    <version>1.1.2.0</version>
+    <version>1.1.3.0</version>
     <authors>RobIII</authors>
     <owners>RobIII</owners>
     <projectUrl>https://github.com/RobThree/TimeZoneMapper</projectUrl>
@@ -15,7 +15,7 @@
       Provides *N*X TimeZone ID to .NET's TimeZoneInfo mappings. Information is based on Unicode Inc's CLDR data files.
     </summary>
     <releaseNotes>
-      * Updated built-in timezone resource (7de0000.2013i -> 7de0000.2014b)
+      * OnlineValuesTZMapper now uses shorter timeout (5 sec), configurable when desired as well as the resource URI.
     </releaseNotes>
     <tags>timezone cldr</tags>
   </metadata>
