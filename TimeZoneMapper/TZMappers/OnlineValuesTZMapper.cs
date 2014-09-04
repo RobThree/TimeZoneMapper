@@ -135,7 +135,8 @@
 
             private static bool IsFileExpired(string path, TimeSpan ttl)
             {
-                return (!File.Exists(path) || (DateTime.UtcNow - new FileInfo(path).CreationTimeUtc) > ttl);
+                var x = (DateTime.UtcNow - new FileInfo(path).LastWriteTimeUtc);
+                return (!File.Exists(path) ||  x > ttl);
             }
         }
     }
