@@ -60,4 +60,4 @@ All you need to do is ensure the data you supply to the CustomValuesTZMapper is 
 
 I will try to update the built-in resource every now-and-then.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/ccg6kh3n4as3d2cy)](https://ci.appveyor.com/project/RobIII/timezonemapper)
+[![Build status](https://ci.appveyor.com/api/projects/status/ccg6kh3n4as3d2cy)](https://ci.appveyor.com/project/RobIII/timezonemapper) <a href="https://www.nuget.org/packages/TimeZoneMapper/"><img src="http://img.shields.io/nuget/v/TimeZoneMapper.svg?style=flat-square" alt="NuGet version" height="18"></a> <a href="https://www.nuget.org/packages/TimeZoneMapper/"><img src="http://img.shields.io/nuget/dt/TimeZoneMapper.svg?style=flat-square" alt="NuGet version" height="18"></a>
