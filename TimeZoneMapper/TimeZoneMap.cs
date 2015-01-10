@@ -103,8 +103,6 @@
         /// <seealso cref="OnlineValuesTZMapper"/>
         public static ITZMapper CreateOnlineWithSpecificFallbackValuesTZMapper(Uri resourceuri, ITZMapper fallbacktzmapper)
         {
-            //TODO: Unittest this method to see if the fallback is returned correctly when an invalid resource uri (http://google.com should do for example) is passed.
-
             try { return new OnlineValuesTZMapper(TimeZoneMapper.TZMappers.OnlineValuesTZMapper.DEFAULTTIMEOUTMS, resourceuri); }
             catch { return fallbacktzmapper; }
         }

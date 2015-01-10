@@ -190,7 +190,10 @@
 
             public string RetrieveCachedString(Uri uri)
             {
-                var dest = Path.Combine(this.CacheDirectory, Path.GetFileName(uri.AbsolutePath));
+                var filename = Path.GetFileName(uri.AbsolutePath);
+                if (string.IsNullOrEmpty(filename))
+                    filename = "windowsZones.xml";
+                var dest = Path.Combine(this.CacheDirectory, filename);
                 if (IsFileExpired(dest, this.DefaultTTL))
                 {
                     base.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
@@ -207,7 +210,7 @@
             private static bool IsFileExpired(string path, TimeSpan ttl)
             {
                 var x = (DateTime.UtcNow - new FileInfo(path).LastWriteTimeUtc);
-                return (!File.Exists(path) ||  x > ttl);
+                return (!File.Exists(path) || x > ttl);
             }
         }
     }

@@ -43,6 +43,13 @@ namespace TimeZoneMapper.Tests
         }
 
         [TestMethod]
+        public void OnlineWithSpecificFallbackValuesMapper_ReturnsCorrectFallbackMapper()
+        {
+            var mapper = TimeZoneMap.CreateOnlineWithSpecificFallbackValuesTZMapper(new Uri("http://example.com/test.xml"), new CustomValuesTZMapper("testcldr.xml", Encoding.UTF8));
+            Assert.AreEqual("zyx.xyz", mapper.Version);
+        }
+
+        [TestMethod]
         public void DefaultValuesMapper_ReturnsUTCTimeZoneInfo()
         {
             var mapper = TimeZoneMap.DefaultValuesTZMapper;
