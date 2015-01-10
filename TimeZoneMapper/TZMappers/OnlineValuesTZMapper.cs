@@ -16,6 +16,11 @@
         public const string DEFAULTRESOURCEURL = "http://unicode.org/repos/cldr/trunk/common/supplemental/windowsZones.xml";
 
         /// <summary>
+        /// Default timeout for HTTP requests.
+        /// </summary>
+        public const int DEFAULTTIMEOUTMS = 5000;
+
+        /// <summary>
         /// Initializes a new instance of an <see cref="OnlineValuesTZMapper"/> with default timeout of 5 seconds and 
         /// <see cref="DEFAULTRESOURCEURL"/> as resourceURL.
         /// </summary>
@@ -24,7 +29,7 @@
         /// <see cref="Path.GetTempPath"/>.
         /// </remarks>
         public OnlineValuesTZMapper()
-            : this(TimeSpan.FromSeconds(5)) { }
+            : this(TimeSpan.FromMilliseconds(DEFAULTTIMEOUTMS)) { }
 
         /// <summary>
         /// Initializes a new instance of an <see cref="OnlineValuesTZMapper"/> with the specified timeout and 

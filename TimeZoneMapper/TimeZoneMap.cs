@@ -67,5 +67,46 @@
             _onlinevaluesmapper = new Lazy<OnlineValuesTZMapper>(() => new OnlineValuesTZMapper());
             _onlinewithfallbackvaluesmapper = new Lazy<ITZMapper>(() => { try { return (ITZMapper)TimeZoneMap.OnlineValuesTZMapper; } catch { return (ITZMapper)TimeZoneMap.DefaultValuesTZMapper; } });
         }
+
+        /// <summary>
+        ///     Creates a <see cref="ITZMapper"/> that tries to use the online resource and, when unreachable or otherwise
+        ///     problematic, uses the specified <see cref="ITZMapper"/> as fallback.
+        /// </summary>
+        /// <param name="fallbacktzmapper">
+        ///     The <see cref="ITZMapper"/> to use when the default <see cref="OnlineValuesTZMapper"/> fails for any
+        ///     reason.
+        /// </param>
+        /// <returns>
+        ///     Returns the default <see cref="OnlineValuesTZMapper"/> unless it experiences any trouble; in that case the
+        ///     specified fallback <see cref="ITZMapper"/> will be returned.
+        /// </returns>
+        /// <seealso cref="OnlineValuesTZMapper"/>
+        public static ITZMapper CreateOnlineWithSpecificFallbackValuesTZMapper(ITZMapper fallbacktzmapper)
+        {
+            try { return TimeZoneMap.OnlineValuesTZMapper; }
+            catch { return fallbacktzmapper; }
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ITZMapper"/> that tries to use the online resource and, when unreachable or otherwise
+        ///     problematic, uses the specified <see cref="ITZMapper"/> as fallback.
+        /// </summary>
+        /// <param name="resourceuri">The URI to use when retrieving CLDR data.</param>
+        /// <param name="fallbacktzmapper">
+        ///     The <see cref="ITZMapper"/> to use when the default <see cref="OnlineValuesTZMapper"/> fails for any
+        ///     reason.
+        /// </param>
+        /// <returns>
+        ///     Returns the default <see cref="OnlineValuesTZMapper"/> unless it experiences any trouble; in that case the
+        ///     specified fallback <see cref="ITZMapper"/> will be returned.
+        /// </returns>
+        /// <seealso cref="OnlineValuesTZMapper"/>
+        public static ITZMapper CreateOnlineWithSpecificFallbackValuesTZMapper(Uri resourceuri, ITZMapper fallbacktzmapper)
+        {
+            //TODO: Unittest this method to see if the fallback is returned correctly when an invalid resource uri (http://google.com should do for example) is passed.
+
+            try { return new OnlineValuesTZMapper(TimeZoneMapper.TZMappers.OnlineValuesTZMapper.DEFAULTTIMEOUTMS, resourceuri); }
+            catch { return fallbacktzmapper; }
+        }
     }
 }
