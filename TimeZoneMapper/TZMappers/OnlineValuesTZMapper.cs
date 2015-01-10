@@ -24,7 +24,7 @@
         /// <see cref="Path.GetTempPath"/>.
         /// </remarks>
         public OnlineValuesTZMapper()
-            : this(5000) { }
+            : this(TimeSpan.FromSeconds(5)) { }
 
         /// <summary>
         /// Initializes a new instance of an <see cref="OnlineValuesTZMapper"/> with the specified timeout and 
@@ -36,6 +36,18 @@
         /// <see cref="Path.GetTempPath"/>.
         /// </remarks>
         public OnlineValuesTZMapper(int timeout)
+            : this(TimeSpan.FromMilliseconds(timeout)) { }
+
+        /// <summary>
+        /// Initializes a new instance of an <see cref="OnlineValuesTZMapper"/> with the specified timeout and 
+        /// <see cref="DEFAULTRESOURCEURL"/> as resourceURL.
+        /// </summary>
+        /// <param name="timeout">The length of time before the request times out.</param>
+        /// <remarks>
+        /// By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
+        /// <see cref="Path.GetTempPath"/>.
+        /// </remarks>
+        public OnlineValuesTZMapper(TimeSpan timeout)
             : this(timeout, DEFAULTRESOURCEURL) { }
 
         /// <summary>
@@ -49,6 +61,19 @@
         /// <see cref="Path.GetTempPath"/>.
         /// </remarks>
         public OnlineValuesTZMapper(int timeout, string resourceurl)
+            : this(TimeSpan.FromMilliseconds(timeout), resourceurl) { }
+
+        /// <summary>
+        /// Initializes a new instance of an <see cref="OnlineValuesTZMapper"/> with the specified timeout and 
+        /// resourceURL.
+        /// </summary>
+        /// <param name="timeout">The length of time before the request times out.</param>
+        /// <param name="resourceurl">The URL to use when retrieving CLDR data.</param>
+        /// <remarks>
+        /// By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
+        /// <see cref="Path.GetTempPath"/>.
+        /// </remarks>
+        public OnlineValuesTZMapper(TimeSpan timeout, string resourceurl)
             : this(timeout, new Uri(resourceurl, UriKind.Absolute)) { }
 
         /// <summary>
@@ -62,6 +87,19 @@
         /// <see cref="Path.GetTempPath"/>.
         /// </remarks>
         public OnlineValuesTZMapper(int timeout, Uri resourceuri)
+            : this(TimeSpan.FromMilliseconds(timeout), resourceuri) { }
+
+        /// <summary>
+        /// Initializes a new instance of an <see cref="OnlineValuesTZMapper"/> with the specified timeout and 
+        /// resourceURI.
+        /// </summary>
+        /// <param name="timeout">The length of time before the request times out.</param>
+        /// <param name="resourceuri">The URI to use when retrieving CLDR data.</param>
+        /// <remarks>
+        /// By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
+        /// <see cref="Path.GetTempPath"/>.
+        /// </remarks>
+        public OnlineValuesTZMapper(TimeSpan timeout, Uri resourceuri)
             : this(timeout, resourceuri, TimeSpan.FromHours(24)) { }
 
         /// <summary>
@@ -77,7 +115,35 @@
         /// The default cache directory used is retrieved from <see cref="Path.GetTempPath"/>.
         /// </remarks>
         public OnlineValuesTZMapper(int timeout, Uri resourceuri, TimeSpan cachettl)
+            : this(TimeSpan.FromMilliseconds(timeout), resourceuri, cachettl) { }
+
+        /// <summary>
+        /// Initializes a new instance of an <see cref="OnlineValuesTZMapper"/> with the specified timeout and 
+        /// resourceURI.
+        /// </summary>
+        /// <param name="timeout">The length of time before the request times out.</param>
+        /// <param name="resourceuri">The URI to use when retrieving CLDR data.</param>
+        /// <param name="cachettl">
+        /// Expiry time for downloaded data; unless this TTL has expired a cached version will be used.
+        /// </param>
+        /// <remarks>
+        /// The default cache directory used is retrieved from <see cref="Path.GetTempPath"/>.
+        /// </remarks>
+        public OnlineValuesTZMapper(TimeSpan timeout, Uri resourceuri, TimeSpan cachettl)
             : this(timeout, resourceuri, cachettl, Path.GetTempPath()) { }
+
+        /// <summary>
+        /// Initializes a new instance of an <see cref="OnlineValuesTZMapper"/> with the specified timeout and 
+        /// resourceURI.
+        /// </summary>
+        /// <param name="timeout">The length of time before the request times out.</param>
+        /// <param name="resourceuri">The URI to use when retrieving CLDR data.</param>
+        /// <param name="cachettl">
+        /// Expiry time for downloaded data; unless this TTL has expired a cached version will be used.
+        /// </param>
+        /// <param name="cachedirectory">The directory to use to store a cached version of the data.</param>
+        public OnlineValuesTZMapper(int timeout, Uri resourceuri, TimeSpan cachettl, string cachedirectory)
+            : this(TimeSpan.FromMilliseconds(timeout), resourceuri, cachettl, cachedirectory) { }
 
         /// <summary>
         /// Initializes a new instance of an <see cref="OnlineValuesTZMapper"/> with the specified timeout and 
@@ -89,7 +155,7 @@
         /// Expiry time for downloaded data; unless this TTL has expired a cached version will be used.
         /// </param>
         /// <param name="cachedirectory">The directory to use to store a cached version of the data.</param>
-        public OnlineValuesTZMapper(int timeout, Uri resourceuri, TimeSpan cachettl, string cachedirectory)
+        public OnlineValuesTZMapper(TimeSpan timeout, Uri resourceuri, TimeSpan cachettl, string cachedirectory)
             : base(new TimedWebClient(timeout, cachettl, cachedirectory).RetrieveCachedString(resourceuri)) { }
 
         /// <summary>
@@ -103,9 +169,9 @@
 
             public string CacheDirectory { get; set; }
 
-            public TimedWebClient(int timeout, TimeSpan ttl, string cachedirectory)
+            public TimedWebClient(TimeSpan timeout, TimeSpan ttl, string cachedirectory)
             {
-                this.Timeout = timeout;
+                this.Timeout = (int)Math.Max(0, timeout.TotalMilliseconds);
                 this.DefaultTTL = ttl;
                 this.CacheDirectory = cachedirectory;
             }

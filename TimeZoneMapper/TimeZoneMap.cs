@@ -4,8 +4,15 @@
     using TimeZoneMapper.TZMappers;
 
     /// <summary>
-    ///     Provides access to different types of <see cref="ITZMapper"/>s.
+    ///     Provides easy access to different "built-in" types of <see cref="ITZMapper"/>s.
     /// </summary>
+    /// <remarks>
+    ///     The static properties and/or methods on this class are mostly convenience methods/properties; if you need
+    ///     more control (such as using a specific uri, cache TTL or timeout value for the 
+    ///     <see cref="OnlineValuesTZMapper"/> or other options not provided by the "built-in" TZMappers/resources
+    ///     returned here) then you will need to instantiate your own instance (and maybe even implement your own
+    ///     <see cref="ITZMapper"/>).
+    /// </remarks>
     public static class TimeZoneMap
     {
         /// <summary>
