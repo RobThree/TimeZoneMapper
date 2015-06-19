@@ -8,7 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{d6a78785-3434-4544-a495-b201afbd0964}</ProjectGuid>
-    <SHFBSchemaVersion>1.9.5.0</SHFBSchemaVersion>
+    <SHFBSchemaVersion>1.9.9.0</SHFBSchemaVersion>
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
          Studio adds them anyway -->
     <AssemblyName>Documentation</AssemblyName>
@@ -28,12 +28,12 @@
     <SelfBranded>False</SelfBranded>
     <Preliminary>False</Preliminary>
     <DocumentationSources>
-      <DocumentationSource sourceFile="bin\Release\TimeZoneMapper.dll" />
       <DocumentationSource sourceFile="bin\Release\TimeZoneMapper.xml" />
+      <DocumentationSource sourceFile="bin\Release\TimeZoneMapper.dll" />
     </DocumentationSources>
     <NamespaceSummaries>
-      <NamespaceSummaryItem name="TimeZoneMapper" isDocumented="True">The TimeZoneMapper namespace provides a simple programming interface for mapping TimeZoneID's (known from many *N*X implementations) to .Net's &lt;see cref="TimeZoneInfo"/&gt; class.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="TimeZoneMapper.TZMappers" isDocumented="True">The TimeZoneMapper.TZMappers namespace provides concrete classes that implement the &lt;see cref="ITZMapper"/&gt; interface as well as the interface itself and a static &lt;see cref="TimeZoneMap"/&gt; class that allows for easy access to these &lt;see cref="ITZMapper"/&gt;s.</NamespaceSummaryItem></NamespaceSummaries>
+      <NamespaceSummaryItem name="TimeZoneMapper" isDocumented="True">The TimeZoneMapper namespace provides a simple programming interface for mapping TimeZoneID's (known from many *N*X implementations) to .Net's &lt;see cref="T:System.TimeZoneInfo"/&gt; class.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="TimeZoneMapper.TZMappers" isDocumented="True">The TimeZoneMapper.TZMappers namespace provides concrete classes that implement the &lt;see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/&gt; interface as well as the interface itself and a static &lt;see cref="T:TimeZoneMapper.TimeZoneMap"/&gt; class that allows for easy access to these &lt;see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/&gt;s.</NamespaceSummaryItem></NamespaceSummaries>
     <ProjectSummary>&amp;lt%3bpara&amp;gt%3b
   Provides %2aN%2aX TimeZone ID to .NET&amp;#39%3bs TimeZoneInfo mappings. Information is based on &amp;lt%3ba href=&amp;quot%3bhttp://www.unicode.org/cldr/charts/latest/supplemental/zone_tzid.html&amp;quot%3b&amp;gt%3bThe Zone-Tzid table&amp;lt%3b/a&amp;gt%3b and &amp;lt%3ba href=&amp;quot%3bhttp://unicode.org/cldr/data/common/supplemental/windowsZones.xml&amp;quot%3b&amp;gt%3bwindowsZones.xml&amp;lt%3b/a&amp;gt%3b.
 &amp;lt%3b/para&amp;gt%3b
@@ -54,12 +54,25 @@ Except as contained in this notice, the name of a copyright holder shall not be 
 &amp;lt%3b/para&amp;gt%3b
 
 </ProjectSummary>
-    <HelpFileVersion>1.2.3.0</HelpFileVersion>
+    <HelpFileVersion>1.2.5.0</HelpFileVersion>
     <SyntaxFilters>Standard</SyntaxFilters>
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <PresentationStyle>VS2005</PresentationStyle>
     <NamingMethod>Guid</NamingMethod>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
+    <ApiFilter />
+    <ComponentConfigurations />
+    <HelpAttributes />
+    <PlugInConfigurations />
+    <BuildLogFile />
+    <HtmlHelp1xCompilerPath />
+    <HtmlHelp2xCompilerPath />
+    <WorkingPath />
+    <ComponentPath />
+    <PlugInNamespaces>ms.vsipcc+, ms.vsexpresscc+</PlugInNamespaces>
+    <CollectionTocStyle>Hierarchical</CollectionTocStyle>
+    <MSHelp2SdkLinkType>Msdn</MSHelp2SdkLinkType>
+    <IncludeStopWordList>True</IncludeStopWordList>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in
        order for Visual Studio to perform the build.  The others are optional
