@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeZoneMapper", "TimeZoneMapper\TimeZoneMapper.csproj", "{CAD1C44E-176F-492C-BA74-92A26531D0C7}"
 EndProject
@@ -23,6 +23,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeZoneMapper.Tests", "TimeZoneMapper.Tests\TimeZoneMapper.Tests.csproj", "{7354DF79-574F-4133-96BF-FFB49099E242}"
 EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "TimeZoneMapperHelp", "TimeZoneMapper\TimeZoneMapperHelp.shfbproj", "{D6A78785-3434-4544-A495-B201AFBD0964}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CAD1C44E-176F-492C-BA74-92A26531D0C7} = {CAD1C44E-176F-492C-BA74-92A26531D0C7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
