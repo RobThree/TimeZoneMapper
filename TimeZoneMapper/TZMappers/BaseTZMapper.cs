@@ -8,7 +8,7 @@
     /// <summary>
     ///     Provides a base class for TimeZoneMapper objects.
     /// </summary>
-    public abstract class BaseTZMapper
+    public abstract class BaseTZMapper : ITZMapper
     {
         private readonly Dictionary<string, TimeZoneInfo> _mappings;
 
@@ -76,6 +76,20 @@
         public TimeZoneInfo MapTZID(string tzid)
         {
             return _mappings[tzid];
+        }
+
+        /// <summary>
+        ///     Maps a TimeZone ID (e.g. "Europe/Amsterdam") to a corresponding TimeZoneInfo object.
+        /// </summary>
+        /// <param name="tzid">The TimeZone ID (e.g. "Europe/Amsterdam").</param>
+        /// <param name="timeZoneInfo">
+        /// When this method returns, contains the value associated with the specified TimeZone ID, if the timezone is
+        /// found; otherwise, null.
+        ///</param>
+        /// <returns>true if the <see cref="ITZMapper"/> contains an element with the specified timezone; otherwise, false.</returns>
+        public bool TryMapTZID(string tzid, out TimeZoneInfo timeZoneInfo)
+        {
+            return _mappings.TryGetValue(tzid, out timeZoneInfo);
         }
 
         /// <summary>

@@ -27,6 +27,17 @@
         TimeZoneInfo MapTZID(string tzid);
 
         /// <summary>
+        ///     Maps a TimeZone ID (e.g. "Europe/Amsterdam") to a corresponding TimeZoneInfo object.
+        /// </summary>
+        /// <param name="tzid">The TimeZone ID (e.g. "Europe/Amsterdam").</param>
+        /// <param name="timeZoneInfo">
+        /// When this method returns, contains the value associated with the specified TimeZone ID, if the timezone is
+        /// found; otherwise, null.
+        ///</param>
+        /// <returns>true if the <see cref="ITZMapper"/> contains an element with the specified timezone; otherwise, false.</returns>
+        bool TryMapTZID(string tzid, out TimeZoneInfo timeZoneInfo);
+
+        /// <summary>
         /// Gets the TimeZoneID version part of the resource currently in use.
         /// </summary>
         /// <remarks>This value corresponds to the &quot;typeVersion&quot; attribute of the resource data.</remarks>

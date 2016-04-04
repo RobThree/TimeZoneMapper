@@ -91,6 +91,20 @@ namespace TimeZoneMapper.Tests
         }
 
         [TestMethod]
+        public void TryMapTZIDReturnsExpectedValues()
+        {
+            var mapper = TimeZoneMap.DefaultValuesTZMapper;
+            var expected = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
+
+            TimeZoneInfo actual;
+            Assert.IsTrue(mapper.TryMapTZID("Europe/Amsterdam", out actual));
+            Assert.AreEqual(expected, actual);
+
+            Assert.IsFalse(mapper.TryMapTZID("Foo/Bar", out actual));
+            Assert.IsNull(actual);
+        }
+
+        [TestMethod]
         public void CustomTZMapperStringConstructorPassingXML()
         {
             var mapper = new CustomValuesTZMapper(File.ReadAllText("testcldr.xml"));
