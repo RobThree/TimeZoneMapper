@@ -19,7 +19,7 @@
     <HtmlHelpName>TimeZoneMapper</HtmlHelpName>
     <Language>en-US</Language>
     <CopyrightHref>http://devcorner.nl</CopyrightHref>
-    <CopyrightText>%28C%29 2013 - 2015 Devcorner.nl</CopyrightText>
+    <CopyrightText>%28C%29 2013 - 2016 Devcorner.nl</CopyrightText>
     <FeedbackEMailAddress>rob%40devcorner.nl</FeedbackEMailAddress>
     <FeedbackEMailLinkText>Devcorner.nl</FeedbackEMailLinkText>
     <HelpTitle>TimeZoneMapper documentation</HelpTitle>
@@ -55,7 +55,7 @@ Except as contained in this notice, the name of a copyright holder shall not be 
 &amp;lt%3b/para&amp;gt%3b
 
 </ProjectSummary>
-    <HelpFileVersion>1.2.8.0</HelpFileVersion>
+    <HelpFileVersion>1.2.10.0</HelpFileVersion>
     <SyntaxFilters>Standard</SyntaxFilters>
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <PresentationStyle>VS2013</PresentationStyle>
