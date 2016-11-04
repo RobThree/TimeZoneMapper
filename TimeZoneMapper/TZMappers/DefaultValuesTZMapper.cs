@@ -6,6 +6,6 @@
     public sealed class DefaultValuesTZMapper : BaseTZMapper, TimeZoneMapper.TZMappers.ITZMapper
     {
         internal DefaultValuesTZMapper()
-            : base(Properties.Resources.windowsZones) { }
+            : base(Properties.Resources.windowsZones, true) { }
     }
 }

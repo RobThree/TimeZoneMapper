@@ -21,12 +21,17 @@
         public const int DEFAULTTIMEOUTMS = 5000;
 
         /// <summary>
+        /// Default cache TTL time.
+        /// </summary>
+        public static readonly TimeSpan DEFAULTCACHETTL = TimeSpan.FromHours(24);
+
+        /// <summary>
         /// Initializes a new instance of an <see cref="OnlineValuesTZMapper"/> with default timeout of 5 seconds and 
         /// <see cref="DEFAULTRESOURCEURL"/> as resourceURL.
         /// </summary>
         /// <remarks>
-        /// By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
-        /// <see cref="Path.GetTempPath"/>.
+        /// By default, the data retrieved is cached for <see cref="DEFAULTCACHETTL">the default cache TTL time</see>
+        /// in the user's temporary folder retrieved from <see cref="Path.GetTempPath"/>.
         /// </remarks>
         public OnlineValuesTZMapper()
             : this(TimeSpan.FromMilliseconds(DEFAULTTIMEOUTMS)) { }
@@ -37,8 +42,8 @@
         /// </summary>
         /// <param name="timeout">The length of time, in milliseconds, before the request times out.</param>
         /// <remarks>
-        /// By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
-        /// <see cref="Path.GetTempPath"/>.
+        /// By default, the data retrieved is cached for <see cref="DEFAULTCACHETTL">the default cache TTL time</see>
+        /// in the user's temporary folder retrieved from <see cref="Path.GetTempPath"/>.
         /// </remarks>
         public OnlineValuesTZMapper(int timeout)
             : this(TimeSpan.FromMilliseconds(timeout)) { }
@@ -49,8 +54,8 @@
         /// </summary>
         /// <param name="timeout">The length of time before the request times out.</param>
         /// <remarks>
-        /// By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
-        /// <see cref="Path.GetTempPath"/>.
+        /// By default, the data retrieved is cached for <see cref="DEFAULTCACHETTL">the default cache TTL time</see>
+        /// in the user's temporary folder retrieved from <see cref="Path.GetTempPath"/>.
         /// </remarks>
         public OnlineValuesTZMapper(TimeSpan timeout)
             : this(timeout, DEFAULTRESOURCEURL) { }
@@ -62,8 +67,8 @@
         /// <param name="timeout">The length of time, in milliseconds, before the request times out.</param>
         /// <param name="resourceurl">The URL to use when retrieving CLDR data.</param>
         /// <remarks>
-        /// By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
-        /// <see cref="Path.GetTempPath"/>.
+        /// By default, the data retrieved is cached for <see cref="DEFAULTCACHETTL">the default cache TTL time</see>
+        /// in the user's temporary folder retrieved from <see cref="Path.GetTempPath"/>.
         /// </remarks>
         public OnlineValuesTZMapper(int timeout, string resourceurl)
             : this(TimeSpan.FromMilliseconds(timeout), resourceurl) { }
@@ -75,8 +80,8 @@
         /// <param name="timeout">The length of time before the request times out.</param>
         /// <param name="resourceurl">The URL to use when retrieving CLDR data.</param>
         /// <remarks>
-        /// By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
-        /// <see cref="Path.GetTempPath"/>.
+        /// By default, the data retrieved is cached for <see cref="DEFAULTCACHETTL">the default cache TTL time</see>
+        /// in the user's temporary folder retrieved from <see cref="Path.GetTempPath"/>.
         /// </remarks>
         public OnlineValuesTZMapper(TimeSpan timeout, string resourceurl)
             : this(timeout, new Uri(resourceurl, UriKind.Absolute)) { }
@@ -88,8 +93,8 @@
         /// <param name="timeout">The length of time, in milliseconds, before the request times out.</param>
         /// <param name="resourceuri">The URI to use when retrieving CLDR data.</param>
         /// <remarks>
-        /// By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
-        /// <see cref="Path.GetTempPath"/>.
+        /// By default, the data retrieved is cached for <see cref="DEFAULTCACHETTL">the default cache TTL time</see>
+        /// in the user's temporary folder retrieved from <see cref="Path.GetTempPath"/>.
         /// </remarks>
         public OnlineValuesTZMapper(int timeout, Uri resourceuri)
             : this(TimeSpan.FromMilliseconds(timeout), resourceuri) { }
@@ -101,11 +106,11 @@
         /// <param name="timeout">The length of time before the request times out.</param>
         /// <param name="resourceuri">The URI to use when retrieving CLDR data.</param>
         /// <remarks>
-        /// By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
-        /// <see cref="Path.GetTempPath"/>.
+        /// By default, the data retrieved is cached for <see cref="DEFAULTCACHETTL">the default cache TTL time</see>
+        /// in the user's temporary folder retrieved from <see cref="Path.GetTempPath"/>.
         /// </remarks>
         public OnlineValuesTZMapper(TimeSpan timeout, Uri resourceuri)
-            : this(timeout, resourceuri, TimeSpan.FromHours(24)) { }
+            : this(timeout, resourceuri, DEFAULTCACHETTL) { }
 
         /// <summary>
         /// Initializes a new instance of an <see cref="OnlineValuesTZMapper"/> with the specified timeout and 
@@ -161,7 +166,7 @@
         /// </param>
         /// <param name="cachedirectory">The directory to use to store a cached version of the data.</param>
         public OnlineValuesTZMapper(TimeSpan timeout, Uri resourceuri, TimeSpan cachettl, string cachedirectory)
-            : base(new TimedWebClient(timeout, cachettl, cachedirectory).RetrieveCachedString(resourceuri)) { }
+            : base(new TimedWebClient(timeout, cachettl, cachedirectory).RetrieveCachedString(resourceuri), false) { }
 
         /// <summary>
         /// Simple "wrapper class" providing timeouts.

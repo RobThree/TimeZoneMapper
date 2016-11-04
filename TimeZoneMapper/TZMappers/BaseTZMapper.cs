@@ -30,7 +30,7 @@
         /// <remarks>This value is a composite of &quot;<see cref="TZIDVersion"/>.<see cref="TZVersion"/>&quot;.</remarks>
         public string Version { get; private set; }
 
-        internal BaseTZMapper(string xmldata)
+        internal BaseTZMapper(string xmldata, bool throwOnDuplicateKey)
         {
             var root = XDocument.Parse(xmldata).Descendants("mapTimezones").First();
             _mappings = root.Descendants("mapZone")
@@ -38,7 +38,7 @@
                 .SelectMany(n => n.Attribute("type").Value.Split(new[] { ' ' }), (n, t) => new { TZID = t, TZ = TryGetTimeZone(n.Attribute("other").Value) })
                 .Where(n => n.TZ != null)   //Filter out "not found" TimeZones
                 .OrderBy(n => n.TZID)
-                .ToDictionary(n => n.TZID, v => v.TZ, StringComparer.OrdinalIgnoreCase);
+                .ToDictionarySafe(n => n.TZID, v => v.TZ, StringComparer.OrdinalIgnoreCase, throwOnDuplicateKey);
 
             this.TZIDVersion = root.Attribute("typeVersion").GetSafeValue();
             this.TZVersion = root.Attribute("otherVersion").GetSafeValue();
@@ -111,7 +111,28 @@
         }
     }
 
-    static class XAttributeExtensions
+    internal static class LinqExtensions
+    {
+        public static Dictionary<TKey, TElement> ToDictionarySafe<TSource, TKey, TElement>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, IEqualityComparer<TKey> comparer, bool throwOnDuplicateKey)
+        {
+            Dictionary<TKey, TElement> ret = new Dictionary<TKey, TElement>(comparer ?? EqualityComparer<TKey>.Default);
+            foreach (TSource item in source)
+            {
+                var key = keySelector(item);
+                if (!ret.ContainsKey(key))
+                    ret.Add(key, elementSelector(item));
+                else
+                {
+                    // if throwOnDuplicateKey then we throw, if not we disregard any duplicate keys and only store the first we encounter
+                    if (throwOnDuplicateKey)
+                        throw new ArgumentException(string.Format("Key '{0}' already exists", key));
+                }
+            }
+            return ret;
+        }
+    }
+
+    internal static class XAttributeExtensions
     {
         public static string GetSafeValue(this XAttribute att)
         {

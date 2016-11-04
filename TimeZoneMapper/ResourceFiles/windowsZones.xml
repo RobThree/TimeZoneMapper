@@ -19,8 +19,8 @@ For terms of use, see http://www.unicode.org/copyright.html
 			<mapZone other="UTC-11" territory="001" type="Etc/GMT+11"/>
 			<mapZone other="UTC-11" territory="AS" type="Pacific/Pago_Pago"/>
 			<mapZone other="UTC-11" territory="NU" type="Pacific/Niue"/>
-			<mapZone other="UTC-11" territory="UM" type="Pacific/Midway"/>
-			<mapZone other="UTC-11" territory="ZZ" type="Etc/GMT+11"/>
+      <mapZone other="UTC-11" territory="UM" type="Pacific/Midway"/>
+      <mapZone other="UTC-11" territory="ZZ" type="Etc/GMT+11"/>
 
 			<!-- (UTC-10:00) Aleutian Islands -->
 			<mapZone other="Aleutian Standard Time" territory="001" type="America/Adak"/>
