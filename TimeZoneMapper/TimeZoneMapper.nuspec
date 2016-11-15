@@ -3,7 +3,7 @@
   <metadata>
     <id>TimeZoneMapper</id>
     <title>TimeZoneMapper</title>
-    <version>1.2.14.0</version>
+    <version>1.2.15.0</version>
     <authors>RobIII</authors>
     <owners>RobIII</owners>
     <projectUrl>https://github.com/RobThree/TimeZoneMapper</projectUrl>
@@ -15,10 +15,7 @@
       Provides *N*X TimeZone ID to .NET's TimeZoneInfo mappings. Information is based on Unicode Inc's CLDR data files.
     </summary>
     <releaseNotes>
-      * OnlineValuesTZMapper no longer throws on duplicate keys (when Unicode releases a 'broken' CLDR update, see github issue #8)
-      * All other TZMappers default to throwing on duplicate keys (behaviour unchanged)
-      * BaseTZMapper now has a constructor argument to throw/ignore duplicate keys
-      * Default Cache TTL is now a public (readonly) property of the BaseTZMapper.
+      * Updated built-in timezone resource (7e00401:2016g -> 7e00402:2016i)
     </releaseNotes>
     <tags>timezone cldr</tags>
   </metadata>
