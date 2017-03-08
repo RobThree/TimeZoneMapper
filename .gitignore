@@ -158,3 +158,6 @@ $RECYCLE.BIN/
 # Documentation files
 *.chm
 *.shfbproj_*
+
+# NuGet artifacts
+*.nupkg
