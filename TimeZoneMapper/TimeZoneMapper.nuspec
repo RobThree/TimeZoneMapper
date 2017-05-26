@@ -3,7 +3,7 @@
   <metadata>
     <id>TimeZoneMapper</id>
     <title>TimeZoneMapper</title>
-    <version>1.2.17.0</version>
+    <version>1.2.18.0</version>
     <authors>RobIII</authors>
     <owners>RobIII</owners>
     <projectUrl>https://github.com/RobThree/TimeZoneMapper</projectUrl>
@@ -16,7 +16,7 @@
     </summary>
     <releaseNotes>
       <![CDATA[
-* Updated built-in timezone resource (7e00402:2016j -> 7e00600:2017a)
+* Updated built-in timezone resource (7e00600:2017a -> 7e00600:2017a)
       ]]>
     </releaseNotes>
     <tags>timezone cldr</tags>
