@@ -161,3 +161,4 @@ $RECYCLE.BIN/
 
 # NuGet artifacts
 *.nupkg
+/.vs
