@@ -11,7 +11,7 @@
     <iconUrl>http://riii.nl/tzmapperlogo</iconUrl>
     <description>Library for mapping *N*X TimeZone ID's to windows TimeZoneInfo classes. Information is based on Unicode Inc's CLDR data files.</description>
     <releaseNotes>* Updated built-in timezone resource (7e00600:2017a -&gt; 7e00600:2017a)</releaseNotes>
-    <copyright>Copyright © Devcorner.nl 2013 - 2017</copyright>
+    <copyright>Copyright ï¿½ Devcorner.nl 2013 - 2017</copyright>
     <tags>timezone cldr</tags>
     <repository url="https://github.com/RobThree/TimeZoneMapper" />
     <dependencies>
@@ -29,22 +29,22 @@
   <files>
     <file src="bin\Release\net45\TimeZoneMapper.dll" target="lib\net45" />
     <file src="bin\Release\net45\TimeZoneMapper.xml" target="lib\net45" />
-	<file src="bin\Release\net451\TimeZoneMapper.dll" target="lib\net451" />
-    <file src="bin\Release\net45\TimeZoneMapper.xml" target="lib\net451" />
-	<file src="bin\Release\net452\TimeZoneMapper.dll" target="lib\net452" />
-    <file src="bin\Release\net45\TimeZoneMapper.xml" target="lib\net452" />
-	<file src="bin\Release\net46\TimeZoneMapper.dll" target="lib\net46" />
-    <file src="bin\Release\net45\TimeZoneMapper.xml" target="lib\net46" />
-	<file src="bin\Release\net461\TimeZoneMapper.dll" target="lib\net461" />
-    <file src="bin\Release\net45\TimeZoneMapper.xml" target="lib\net461" />
-	<file src="bin\Release\net462\TimeZoneMapper.dll" target="lib\net462" />
-    <file src="bin\Release\net45\TimeZoneMapper.xml" target="lib\net462" />
-	<file src="bin\Release\net47\TimeZoneMapper.dll" target="lib\net47" />
-    <file src="bin\Release\net45\TimeZoneMapper.xml" target="lib\net47" />
-	<file src="bin\Release\netcoreapp2.0\TimeZoneMapper.dll" target="lib\netcoreapp2.0" />
-    <file src="bin\Release\net45\TimeZoneMapper.xml" target="lib\netcoreapp2.0" />
-	<file src="bin\Release\netstandard2.0\TimeZoneMapper.dll" target="lib\netstandard2.0" />
-    <file src="bin\Release\net45\TimeZoneMapper.xml" target="lib\netstandard2.0" />
-    
+    <file src="bin\Release\net451\TimeZoneMapper.dll" target="lib\net451" />
+    <file src="bin\Release\net451\TimeZoneMapper.xml" target="lib\net451" />
+    <file src="bin\Release\net452\TimeZoneMapper.dll" target="lib\net452" />
+    <file src="bin\Release\net452\TimeZoneMapper.xml" target="lib\net452" />
+    <file src="bin\Release\net46\TimeZoneMapper.dll" target="lib\net46" />
+    <file src="bin\Release\net46\TimeZoneMapper.xml" target="lib\net46" />
+    <file src="bin\Release\net461\TimeZoneMapper.dll" target="lib\net461" />
+    <file src="bin\Release\net461\TimeZoneMapper.xml" target="lib\net461" />
+    <file src="bin\Release\net462\TimeZoneMapper.dll" target="lib\net462" />
+    <file src="bin\Release\net462\TimeZoneMapper.xml" target="lib\net462" />
+    <file src="bin\Release\net47\TimeZoneMapper.dll" target="lib\net47" />
+    <file src="bin\Release\net47\TimeZoneMapper.xml" target="lib\net47" />
+    <file src="bin\Release\netcoreapp2.0\TimeZoneMapper.dll" target="lib\netcoreapp2.0" />
+    <file src="bin\Release\netcoreapp2.0\TimeZoneMapper.xml" target="lib\netcoreapp2.0" />
+    <file src="bin\Release\netstandard2.0\TimeZoneMapper.dll" target="lib\netstandard2.0" />
+    <file src="bin\Release\netstandard2.0\TimeZoneMapper.xml" target="lib\netstandard2.0" />
+    <file src="..\documentation\TimeZoneMapper.chm" target="content" />
   </files>
 </package>
