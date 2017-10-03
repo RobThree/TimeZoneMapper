@@ -27,6 +27,8 @@
     </dependencies>
   </metadata>
   <files>
+    <file src="bin\Release\net45\TimeZoneMapper.dll" target="lib\net40" />
+    <file src="bin\Release\net45\TimeZoneMapper.xml" target="lib\net40" />
     <file src="bin\Release\net45\TimeZoneMapper.dll" target="lib\net45" />
     <file src="bin\Release\net45\TimeZoneMapper.xml" target="lib\net45" />
     <file src="bin\Release\net451\TimeZoneMapper.dll" target="lib\net451" />
