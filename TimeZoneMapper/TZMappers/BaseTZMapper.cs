@@ -30,40 +30,62 @@
         /// <remarks>This value is a composite of &quot;<see cref="TZIDVersion"/>.<see cref="TZVersion"/>&quot;.</remarks>
         public string Version { get; private set; }
 
-        internal BaseTZMapper(string xmldata, bool throwOnDuplicateKey)
+        /// <summary>
+        /// Baseclass for <see cref="ITZMapper"/>s.
+        /// </summary>
+        /// <param name="xmldata"></param>
+        /// <param name="throwOnDuplicateKey">
+        /// When true, an exception will be thrown when the XML data contains duplicate timezones. When false, 
+        /// duplicates are ignored and only the first entry in the XML data will be used.
+        /// </param>
+        /// <param name="throwOnNonExisting">
+        /// When true, an exception will be thrown when the XML data contains non-existing timezone ID's. When false,
+        /// non-existing timezone ID's are ignored.
+        /// </param>
+        /// <exception cref="TimeZoneNotFoundException">
+        /// Thrown when a timezone is found that cannot be mapped to a windows timezone in the xmldata and
+        /// <paramref name="throwOnNonExisting"/> is true.
+        /// </exception>
+        /// <exception cref="InvalidTimeZoneException">
+        /// Thrown when the time zone identifier was found, but the registry data is corrupted and
+        /// <paramref name="throwOnNonExisting"/> is true.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when a duplicate timezone is found in the xmldata and <paramref name="throwOnDuplicateKey"/> is true.
+        /// </exception>
+        protected BaseTZMapper(string xmldata, bool throwOnDuplicateKey = true, bool throwOnNonExisting = true)
         {
             var root = XDocument.Parse(xmldata).Descendants("mapTimezones").First();
             _mappings = root.Descendants("mapZone")
                 .Where(n => !n.Attribute("territory").Value.Equals("001"))
-                .SelectMany(n => n.Attribute("type").Value.Split(new[] { ' ' }), (n, t) => new { TZID = t, TZ = TryGetTimeZone(n.Attribute("other").Value) })
-                .Where(n => n.TZ != null)   //Filter out "not found" TimeZones
+                .SelectMany(n => n.Attribute("type").Value.Split(new[] { ' ' }), (n, t) => new { TZID = t, TZ = TryGetTimeZone(n.Attribute("other").Value, throwOnNonExisting) })
+                .Where(n => n.TZ != null)   //Filter out "not found" TimeZones (only happens when throwOnNonExisting is false)
                 .OrderBy(n => n.TZID)
                 .ToDictionarySafe(n => n.TZID, v => v.TZ, StringComparer.OrdinalIgnoreCase, throwOnDuplicateKey);
 
-            this.TZIDVersion = root.Attribute("typeVersion").GetSafeValue();
-            this.TZVersion = root.Attribute("otherVersion").GetSafeValue();
-            this.Version = string.Format("{0}.{1}", this.TZIDVersion, this.TZVersion);
+            TZIDVersion = root.Attribute("typeVersion").GetSafeValue();
+            TZVersion = root.Attribute("otherVersion").GetSafeValue();
+            Version = string.Format("{0}.{1}", TZIDVersion, TZVersion);
         }
 
         /// <summary>
         /// Retrieves a TimeZone by it's Id, handling exceptions and returning null instead for invalid / not found Id's.
         /// </summary>
         /// <param name="id">The time zone identifier, which corresponds to the Id property.</param>
+        /// <param name="throwOnNonExisting">Throws an exception when the timezone Id cannot be found.s</param>
         /// <returns>Returns the TimeZone when found, null otherwise.</returns>
-        private static TimeZoneInfo TryGetTimeZone(string id)
+        private static TimeZoneInfo TryGetTimeZone(string id, bool throwOnNonExisting)
         {
+            if (throwOnNonExisting)
+                return TimeZoneInfo.FindSystemTimeZoneById(id);
+
             try
             {
                 return TimeZoneInfo.FindSystemTimeZoneById(id);
             }
-            catch (TimeZoneNotFoundException)
-            {
-                return null;
-            }
-            catch (InvalidTimeZoneException)
-            {
-                return null;
-            }
+            catch (TimeZoneNotFoundException) { }
+            catch (InvalidTimeZoneException) { }
+            return null;
         }
 
         /// <summary>

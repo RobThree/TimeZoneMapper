@@ -45,7 +45,7 @@ namespace TimeZoneMapper.Tests
         [TestMethod]
         public void OnlineWithSpecificFallbackValuesMapper_ReturnsCorrectFallbackMapper()
         {
-            var mapper = TimeZoneMap.CreateOnlineWithSpecificFallbackValuesTZMapper(new Uri("http://example.com/test.xml"), new CustomValuesTZMapper("testcldr.xml", Encoding.UTF8));
+            var mapper = TimeZoneMap.CreateOnlineWithSpecificFallbackValuesTZMapper(new Uri("http://example.com/test.xml"), new CustomValuesTZMapper("testfiles/testcldr.xml", Encoding.UTF8));
             Assert.AreEqual("zyx.xyz", mapper.Version);
         }
 
@@ -96,8 +96,7 @@ namespace TimeZoneMapper.Tests
             var mapper = TimeZoneMap.DefaultValuesTZMapper;
             var expected = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
 
-            TimeZoneInfo actual;
-            Assert.IsTrue(mapper.TryMapTZID("Europe/Amsterdam", out actual));
+            Assert.IsTrue(mapper.TryMapTZID("Europe/Amsterdam", out TimeZoneInfo actual));
             Assert.AreEqual(expected, actual);
 
             Assert.IsFalse(mapper.TryMapTZID("Foo/Bar", out actual));
@@ -107,7 +106,7 @@ namespace TimeZoneMapper.Tests
         [TestMethod]
         public void CustomTZMapperStringConstructorPassingXML()
         {
-            var mapper = new CustomValuesTZMapper(File.ReadAllText("testcldr.xml"));
+            var mapper = new CustomValuesTZMapper(File.ReadAllText("testfiles/testcldr.xml"));
 
             Assert.AreEqual(TimeZoneInfo.FindSystemTimeZoneById("UTC"), mapper.MapTZID("Test/A"));
             Assert.AreEqual(TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time"), mapper.MapTZID("Test/B"));
@@ -116,7 +115,7 @@ namespace TimeZoneMapper.Tests
         [TestMethod]
         public void SpaceSeparatedTimeZonesAreParsedCorrectly()
         {
-            var mapper = new CustomValuesTZMapper(File.ReadAllText("testcldr.xml"));
+            var mapper = new CustomValuesTZMapper(File.ReadAllText("testfiles/testcldr.xml"));
 
             Assert.AreEqual(TimeZoneInfo.FindSystemTimeZoneById("Alaskan Standard Time"), mapper.MapTZID("America/Anchorage"));
             Assert.AreEqual(TimeZoneInfo.FindSystemTimeZoneById("Alaskan Standard Time"), mapper.MapTZID("America/Juneau"));
@@ -128,7 +127,7 @@ namespace TimeZoneMapper.Tests
         [TestMethod]
         public void CustomTZMapperStringConstructorPassingPath()
         {
-            var mapper = new CustomValuesTZMapper("testcldr.xml", Encoding.UTF8);
+            var mapper = new CustomValuesTZMapper("testfiles/testcldr.xml", Encoding.UTF8);
 
             Assert.AreEqual(TimeZoneInfo.FindSystemTimeZoneById("UTC"), mapper.MapTZID("Test/A"));
             Assert.AreEqual(TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time"), mapper.MapTZID("Test/B"));
@@ -137,7 +136,7 @@ namespace TimeZoneMapper.Tests
         [TestMethod]
         public void CustomTZMapperStringConstructorPassingStream()
         {
-            using (var stream = File.Open("testcldr.xml", FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var stream = File.Open("testfiles/testcldr.xml", FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 var mapper = new CustomValuesTZMapper(stream);
 
@@ -150,7 +149,7 @@ namespace TimeZoneMapper.Tests
         [ExpectedException(typeof(KeyNotFoundException), "A non-existing TZID should throw")]
         public void CustomTZMapperThrowsOnNonExistingTZID()
         {
-            var mapper = new CustomValuesTZMapper("testcldr.xml", Encoding.UTF8);
+            var mapper = new CustomValuesTZMapper("testfiles/testcldr.xml", Encoding.UTF8);
             mapper.MapTZID("XXX");
         }
 
@@ -158,7 +157,7 @@ namespace TimeZoneMapper.Tests
         [ExpectedException(typeof(KeyNotFoundException), "A TZID in the CLDR that doesn't map to an existing TimeZone should throw since it shouldn't be in TZMapper")]
         public void CustomTZMapperDoesntContainNonExistingTimeZones()
         {
-            var mapper = new CustomValuesTZMapper("testcldr.xml", Encoding.UTF8);
+            var mapper = new CustomValuesTZMapper("testfiles/testcldr.xml", Encoding.UTF8);
             mapper.MapTZID("Test/C");
         }
 
@@ -192,7 +191,7 @@ namespace TimeZoneMapper.Tests
         [TestMethod]
         public void VersionAttributesAreParsedCorrectly()
         {
-            var mapper = new CustomValuesTZMapper("testcldr.xml", Encoding.UTF8);
+            var mapper = new CustomValuesTZMapper("testfiles/testcldr.xml", Encoding.UTF8);
 
             Assert.AreEqual("zyx", mapper.TZIDVersion);
             Assert.AreEqual("xyz", mapper.TZVersion);
@@ -205,5 +204,73 @@ namespace TimeZoneMapper.Tests
         {
             var mapper = TimeZoneMap.DefaultValuesTZMapper.MapTZID("XXX");
         }
+
+        [TestMethod]
+        public void EnsureResourceFileIsValid()
+        {
+            // We take the ACTUAL resourcefile and load it in the StrictTestMapper which will throw on duplicate
+            // keys and/or non-existing timezone ID's. This should NOT throw any exceptions.
+            var mapper = new StrictTestMapper(
+                xmldata: File.ReadAllText("../../../TimeZoneMapper/ResourceFiles/windowsZones.xml"),
+                throwOnDuplicateKey: true,
+                throwOnNonExisting: true
+            );
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(TimeZoneNotFoundException))]
+        public void ConstructorThrowsOnNonExistingTimeZoneIdWhenSpecified()
+        {
+            // We take the ACTUAL resourcefile and load it in the StrictTestMapper which will throw on duplicate
+            // keys and/or non-existing timezone ID's. This should NOT throw any exceptions.
+            var mapper = new StrictTestMapper(
+                xmldata: File.ReadAllText("testfiles/nonexisting.xml"),
+                throwOnDuplicateKey: true,
+                throwOnNonExisting: true
+            );
+        }
+
+        [TestMethod]
+        public void ConstructorDoesNotThrowOnNonExistingTimeZoneIdWhenSpecified()
+        {
+            // We take the ACTUAL resourcefile and load it in the StrictTestMapper which will throw on duplicate
+            // keys and/or non-existing timezone ID's. This should NOT throw any exceptions.
+            var mapper = new StrictTestMapper(
+                xmldata: File.ReadAllText("testfiles/nonexisting.xml"),
+                throwOnDuplicateKey: true,
+                throwOnNonExisting: false
+            );
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ConstructorThrowsOnDuplicateKeyWhenSpecified()
+        {
+            // We take the ACTUAL resourcefile and load it in the StrictTestMapper which will throw on duplicate
+            // keys and/or non-existing timezone ID's. This should NOT throw any exceptions.
+            var mapper = new StrictTestMapper(
+                xmldata: File.ReadAllText("testfiles/duplicatekey.xml"),
+                throwOnDuplicateKey: true,
+                throwOnNonExisting: true
+            );
+        }
+
+        [TestMethod]
+        public void ConstructorDoesNotThrowOnDuplicateKeyWhenSpecified()
+        {
+            // We take the ACTUAL resourcefile and load it in the StrictTestMapper which will throw on duplicate
+            // keys and/or non-existing timezone ID's. This should NOT throw any exceptions.
+            var mapper = new StrictTestMapper(
+                xmldata: File.ReadAllText("testfiles/duplicatekey.xml"),
+                throwOnDuplicateKey: false,
+                throwOnNonExisting: true
+            );
+        }
+    }
+
+    public class StrictTestMapper : BaseTZMapper, ITZMapper
+    {
+        public StrictTestMapper(string xmldata, bool throwOnDuplicateKey, bool throwOnNonExisting)
+            : base(xmldata, throwOnDuplicateKey, throwOnNonExisting) { }
     }
 }

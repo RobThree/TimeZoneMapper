@@ -61,7 +61,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="testcldr.xml">
+    <Content Include="testfiles\duplicatekey.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testfiles\nonexisting.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testfiles\testcldr.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
