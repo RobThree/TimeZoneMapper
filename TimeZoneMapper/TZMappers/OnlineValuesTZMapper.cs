@@ -8,7 +8,7 @@
     /// <summary>
     /// Provides TimeZoneID mapping based on a current (&quot;dynamic&quot;) resource.
     /// </summary>
-    public sealed class OnlineValuesTZMapper : BaseTZMapper, TimeZoneMapper.TZMappers.ITZMapper
+    public sealed class OnlineValuesTZMapper : BaseTZMapper, ITZMapper
     {
         /// <summary>
         /// Default URL used for <see cref="OnlineValuesTZMapper"/>
@@ -165,8 +165,16 @@
         /// Expiry time for downloaded data; unless this TTL has expired a cached version will be used.
         /// </param>
         /// <param name="cachedirectory">The directory to use to store a cached version of the data.</param>
-        public OnlineValuesTZMapper(TimeSpan timeout, Uri resourceuri, TimeSpan cachettl, string cachedirectory)
-            : base(new TimedWebClient(timeout, cachettl, cachedirectory).RetrieveCachedString(resourceuri), false) { }
+        /// <param name="throwOnDuplicateKey">
+        /// When true, an exception will be thrown when the XML data contains duplicate timezones. When false, 
+        /// duplicates are ignored and only the first entry in the XML data will be used.
+        /// </param>
+        /// <param name="throwOnNonExisting">
+        /// When true, an exception will be thrown when the XML data contains non-existing timezone ID's. When false,
+        /// non-existing timezone ID's are ignored.
+        /// </param>
+        public OnlineValuesTZMapper(TimeSpan timeout, Uri resourceuri, TimeSpan cachettl, string cachedirectory, bool throwOnDuplicateKey = false, bool throwOnNonExisting = false)
+            : base(new TimedWebClient(timeout, cachettl, cachedirectory).RetrieveCachedString(resourceuri), throwOnDuplicateKey, throwOnNonExisting) { }
 
         /// <summary>
         /// Simple "wrapper class" providing timeouts.
@@ -181,15 +189,15 @@
 
             public TimedWebClient(TimeSpan timeout, TimeSpan ttl, string cachedirectory)
             {
-                this.Timeout = (int)Math.Max(0, timeout.TotalMilliseconds);
-                this.DefaultTTL = ttl;
-                this.CacheDirectory = cachedirectory;
+                Timeout = (int)Math.Max(0, timeout.TotalMilliseconds);
+                DefaultTTL = ttl;
+                CacheDirectory = cachedirectory;
             }
 
             protected override WebRequest GetWebRequest(Uri address)
             {
                 var wr = base.GetWebRequest(address);
-                wr.Timeout = this.Timeout;
+                wr.Timeout = Timeout;
                 return wr;
             }
 
@@ -198,11 +206,11 @@
                 var filename = Path.GetFileName(uri.AbsolutePath);
                 if (string.IsNullOrEmpty(filename))
                     filename = "windowsZones.xml";
-                var dest = Path.Combine(this.CacheDirectory, filename);
-                if (IsFileExpired(dest, this.DefaultTTL))
+                var dest = Path.Combine(CacheDirectory, filename);
+                if (IsFileExpired(dest, DefaultTTL))
                 {
-                    base.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
-                    base.DownloadFile(uri, dest);
+                    CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
+                    DownloadFile(uri, dest);
                 }
 
                 using (var f = File.OpenRead(dest))

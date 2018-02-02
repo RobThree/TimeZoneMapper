@@ -8,7 +8,7 @@
     /// </summary>
     /// <remarks>
     ///     The static properties and/or methods on this class are mostly convenience methods/properties; if you need
-    ///     more control (such as using a specific uri, cache TTL or timeout value for the
+    ///     more control (such as using a specific uri, cache TTL or timeout value for the 
     ///     <see cref="OnlineValuesTZMapper"/> or other options not provided by the "built-in" TZMappers/resources
     ///     returned here) then you will need to instantiate your own instance (and maybe even implement your own
     ///     <see cref="ITZMapper"/>).
@@ -36,7 +36,7 @@
         ///         The mappings are retrieved from the online resource a single time (upon first usage) and used from
         ///         there on. Consider that, between different runs of the application, different values may be
         ///         returned when the online resource changes. The specific version of the resource can be retrieved by
-        ///         examining the <see cref="ITZMapper.TZVersion"/> and <see cref="ITZMapper.TZIDVersion"/> (or
+        ///         examining the <see cref="ITZMapper.TZVersion"/> and <see cref="ITZMapper.TZIDVersion"/> (or 
         ///         <see cref="ITZMapper.Version"/>)
         ///         properties.
         ///     </para>
@@ -65,7 +65,7 @@
         {
             _defaultvaluesmapper = new Lazy<DefaultValuesTZMapper>(() => new DefaultValuesTZMapper());
             _onlinevaluesmapper = new Lazy<OnlineValuesTZMapper>(() => new OnlineValuesTZMapper());
-            _onlinewithfallbackvaluesmapper = new Lazy<ITZMapper>(() => { try { return (ITZMapper)TimeZoneMap.OnlineValuesTZMapper; } catch { return (ITZMapper)TimeZoneMap.DefaultValuesTZMapper; } });
+            _onlinewithfallbackvaluesmapper = new Lazy<ITZMapper>(() => { try { return OnlineValuesTZMapper; } catch { return DefaultValuesTZMapper; } });
         }
 
         /// <summary>
@@ -83,7 +83,7 @@
         /// <seealso cref="OnlineValuesTZMapper"/>
         public static ITZMapper CreateOnlineWithSpecificFallbackValuesTZMapper(ITZMapper fallbacktzmapper)
         {
-            try { return TimeZoneMap.OnlineValuesTZMapper; }
+            try { return OnlineValuesTZMapper; }
             catch { return fallbacktzmapper; }
         }
 
@@ -103,7 +103,7 @@
         /// <seealso cref="OnlineValuesTZMapper"/>
         public static ITZMapper CreateOnlineWithSpecificFallbackValuesTZMapper(Uri resourceuri, ITZMapper fallbacktzmapper)
         {
-            try { return new OnlineValuesTZMapper(TimeZoneMapper.TZMappers.OnlineValuesTZMapper.DEFAULTTIMEOUTMS, resourceuri); }
+            try { return new OnlineValuesTZMapper(TZMappers.OnlineValuesTZMapper.DEFAULTTIMEOUTMS, resourceuri); }
             catch { return fallbacktzmapper; }
         }
     }
