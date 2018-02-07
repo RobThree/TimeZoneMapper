@@ -3,9 +3,9 @@
     /// <summary>
     ///     Provides TimeZoneID mapping based on a built-in (&quot;static&quot;) resource.
     /// </summary>
-    public sealed class DefaultValuesTZMapper : BaseTZMapper, TimeZoneMapper.TZMappers.ITZMapper
+    public sealed class DefaultValuesTZMapper : BaseTZMapper, ITZMapper
     {
         internal DefaultValuesTZMapper()
-            : base(Properties.Resources.windowsZones, true) { }
+            : base(Properties.Resources.windowsZones) { }
     }
 }

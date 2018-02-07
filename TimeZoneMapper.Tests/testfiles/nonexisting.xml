@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<supplementalData>
+  <version number="TEST"/>
+  <generation date="1970-01-01"/>
+  <windowsZones>
+    <mapTimezones otherVersion="xyz" typeVersion="zyx">
+      <mapZone other="NONEXSISTING" territory="ZZ" type="Test/C"/>
+    </mapTimezones>
+  </windowsZones>
+</supplementalData>
