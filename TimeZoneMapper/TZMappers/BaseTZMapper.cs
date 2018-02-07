@@ -53,7 +53,7 @@
         /// <exception cref="ArgumentException">
         /// Thrown when a duplicate timezone is found in the xmldata and <paramref name="throwOnDuplicateKey"/> is true.
         /// </exception>
-        protected BaseTZMapper(string xmldata, bool throwOnDuplicateKey = true, bool throwOnNonExisting = true)
+        internal BaseTZMapper(string xmldata, bool throwOnDuplicateKey = true, bool throwOnNonExisting = true)
         {
             var root = XDocument.Parse(xmldata).Descendants("mapTimezones").First();
             _mappings = root.Descendants("mapZone")
@@ -72,7 +72,7 @@
         /// Retrieves a TimeZone by it's Id, handling exceptions and returning null instead for invalid / not found Id's.
         /// </summary>
         /// <param name="id">The time zone identifier, which corresponds to the Id property.</param>
-        /// <param name="throwOnNonExisting">Throws an exception when the timezone Id cannot be found.s</param>
+        /// <param name="throwOnNonExisting">Throws an exception when the timezone Id cannot be found.</param>
         /// <returns>Returns the TimeZone when found, null otherwise.</returns>
         private static TimeZoneInfo TryGetTimeZone(string id, bool throwOnNonExisting)
         {

@@ -28,8 +28,8 @@
     <SelfBranded>False</SelfBranded>
     <Preliminary>False</Preliminary>
     <DocumentationSources>
-      <DocumentationSource sourceFile="bin\Release\TimeZoneMapper.xml" />
-      <DocumentationSource sourceFile="bin\Release\TimeZoneMapper.dll" />
+      <DocumentationSource sourceFile="bin\Release\net45\TimeZoneMapper.dll" />
+      <DocumentationSource sourceFile="bin\Release\net45\TimeZoneMapper.xml" />
     </DocumentationSources>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="TimeZoneMapper" isDocumented="True">The TimeZoneMapper namespace provides a simple programming interface for mapping TimeZoneID's (known from many *N*X implementations) to .Net's &lt;see cref="T:System.TimeZoneInfo"/&gt; class.</NamespaceSummaryItem>
@@ -55,7 +55,7 @@ Except as contained in this notice, the name of a copyright holder shall not be 
 &amp;lt%3b/para&amp;gt%3b
 
 </ProjectSummary>
-    <HelpFileVersion>1.2.19.0</HelpFileVersion>
+    <HelpFileVersion>1.2.20.0</HelpFileVersion>
     <SyntaxFilters>Standard</SyntaxFilters>
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <PresentationStyle>VS2013</PresentationStyle>

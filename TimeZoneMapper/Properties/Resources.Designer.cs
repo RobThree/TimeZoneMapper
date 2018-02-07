@@ -74,8 +74,7 @@ namespace TimeZoneMapper.Properties {
         ///	&lt;windowsZones&gt;
         ///		&lt;mapTimezones otherVersion=&quot;7e00600&quot; typeVersion=&quot;2017a&quot;&gt;
         ///
-        ///			&lt;!-- (UTC-12:00) International Date Line West --&gt;
-        ///			&lt;map [rest of string was truncated]&quot;;.
+        ///			&lt;!-- (UTC-12:00) International Date Line Wes [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string windowsZones {
             get {

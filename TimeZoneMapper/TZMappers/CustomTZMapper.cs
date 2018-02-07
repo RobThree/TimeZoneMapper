@@ -20,7 +20,6 @@ namespace TimeZoneMapper.TZMappers
         /// When true, an exception will be thrown when the XML data contains non-existing timezone ID's. When false,
         /// non-existing timezone ID's are ignored.
         /// </param>
-
         public CustomValuesTZMapper(string cldrxml, bool throwOnDuplicateKey = false, bool throwOnNonExisting = false)
             : base(cldrxml, throwOnDuplicateKey, throwOnNonExisting) { }
 
@@ -29,7 +28,7 @@ namespace TimeZoneMapper.TZMappers
         /// </summary>
         /// <param name="path">Path to an XML file containing CLDR data.</param>
         /// <param name="encoding">The encoding applied to the contents of the file.</param>
-        /// <param name="throwOnDuplicateKey">
+        /// /// <param name="throwOnDuplicateKey">
         /// When true, an exception will be thrown when the XML data contains duplicate timezones. When false, 
         /// duplicates are ignored and only the first entry in the XML data will be used.
         /// </param>
