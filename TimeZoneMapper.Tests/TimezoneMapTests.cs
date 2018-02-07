@@ -221,8 +221,8 @@ namespace TimeZoneMapper.Tests
         [ExpectedException(typeof(TimeZoneNotFoundException))]
         public void ConstructorThrowsOnNonExistingTimeZoneIdWhenSpecified()
         {
-            // We take the ACTUAL resourcefile and load it in the StrictTestMapper which will throw on duplicate
-            // keys and/or non-existing timezone ID's. This should NOT throw any exceptions.
+            // We take a test resource file with a non-existing TimeZoneId (i.e. .Net won't recognize the TimeZoneId)
+            // which should then throw a TimeZoneNotFoundException.
             var mapper = new StrictTestMapper(
                 xmldata: File.ReadAllText("testfiles/nonexisting.xml"),
                 throwOnDuplicateKey: true,
@@ -233,8 +233,8 @@ namespace TimeZoneMapper.Tests
         [TestMethod]
         public void ConstructorDoesNotThrowOnNonExistingTimeZoneIdWhenSpecified()
         {
-            // We take the ACTUAL resourcefile and load it in the StrictTestMapper which will throw on duplicate
-            // keys and/or non-existing timezone ID's. This should NOT throw any exceptions.
+            // We take a test resource file with a non-existing TimeZoneId (i.e. .Net won't recognize the TimeZoneId)
+            // which should NOT throw a TimeZoneNotFoundException because we set throwOnNonExisting to false.
             var mapper = new StrictTestMapper(
                 xmldata: File.ReadAllText("testfiles/nonexisting.xml"),
                 throwOnDuplicateKey: true,
@@ -246,8 +246,7 @@ namespace TimeZoneMapper.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void ConstructorThrowsOnDuplicateKeyWhenSpecified()
         {
-            // We take the ACTUAL resourcefile and load it in the StrictTestMapper which will throw on duplicate
-            // keys and/or non-existing timezone ID's. This should NOT throw any exceptions.
+            // We take a test resource file with a duplicate TimeZoneId which should then throw an ArgumentException.
             var mapper = new StrictTestMapper(
                 xmldata: File.ReadAllText("testfiles/duplicatekey.xml"),
                 throwOnDuplicateKey: true,
@@ -258,8 +257,8 @@ namespace TimeZoneMapper.Tests
         [TestMethod]
         public void ConstructorDoesNotThrowOnDuplicateKeyWhenSpecified()
         {
-            // We take the ACTUAL resourcefile and load it in the StrictTestMapper which will throw on duplicate
-            // keys and/or non-existing timezone ID's. This should NOT throw any exceptions.
+            // We take a test resource file with a duplicate TimeZoneId which should NOT throw an ArgumentException
+            // because we set throwOnDuplicateKey to false.
             var mapper = new StrictTestMapper(
                 xmldata: File.ReadAllText("testfiles/duplicatekey.xml"),
                 throwOnDuplicateKey: false,
