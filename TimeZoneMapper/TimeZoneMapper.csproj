@@ -4,7 +4,7 @@
     <TargetFrameworks>net40;net45;net451;net452;net46;net461;net462;net47;netstandard2.0;netcoreapp2.0</TargetFrameworks>
     <ApplicationIcon>ResourceFiles\TimezoneMapper.ico</ApplicationIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.2.22.0</Version>
+    <Version>1.2.23.0</Version>
     <Authors>RobIII</Authors>
     <Company>Devcorner.nl</Company>
     <Description>Library for mapping *N*X TimeZone ID's to windows TimeZoneInfo classes. Information is based on Unicode Inc's CLDR data files.</Description>
@@ -13,12 +13,12 @@
     <PackageLicenseUrl>https://github.com/RobThree/TimeZoneMapper/blob/master/LICENSE</PackageLicenseUrl>
     <Product>TimeZoneMapper</Product>
     <PackageId>TimeZoneMapper</PackageId>
-    <PackageReleaseNotes>* Updated built-in timezone resource (7e10900:2018d -&gt; 7e10900:2018e)</PackageReleaseNotes>
+    <PackageReleaseNotes>* Updated built-in timezone resource (7e10900:2018e)</PackageReleaseNotes>
     <PackageTags>timezone cldr</PackageTags>
     <Copyright>Copyright © Devcorner.nl 2013 - 2018</Copyright>
     <RepositoryUrl>https://github.com/RobThree/TimeZoneMapper</RepositoryUrl>
-    <AssemblyVersion>1.2.22.0</AssemblyVersion>
-    <FileVersion>1.2.22.0</FileVersion>
+    <AssemblyVersion>1.2.23.0</AssemblyVersion>
+    <FileVersion>1.2.23.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
