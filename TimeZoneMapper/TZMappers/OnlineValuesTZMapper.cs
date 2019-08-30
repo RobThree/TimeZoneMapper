@@ -13,7 +13,7 @@
         /// <summary>
         /// Default URL used for <see cref="OnlineValuesTZMapper"/>
         /// </summary>
-        public const string DEFAULTRESOURCEURL = "http://unicode.org/repos/cldr/trunk/common/supplemental/windowsZones.xml";
+        public const string DEFAULTRESOURCEURL = "https://raw.githubusercontent.com/unicode-org/cldr/master/common/supplemental/windowsZones.xml";
 
         /// <summary>
         /// Default timeout for HTTP requests.

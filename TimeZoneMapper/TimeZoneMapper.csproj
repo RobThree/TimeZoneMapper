@@ -1,22 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net40;net45;net451;net452;net46;net461;net462;net47;netstandard2.0;netcoreapp2.0</TargetFrameworks>
     <ApplicationIcon>ResourceFiles\TimezoneMapper.ico</ApplicationIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.2.26.0</Version>
+    <Version>1.2.27.0</Version>
     <Authors>RobIII</Authors>
     <Company>Devcorner.nl</Company>
     <Description>Library for mapping *N*X TimeZone ID's to windows TimeZoneInfo classes. Information is based on Unicode Inc's CLDR data files.</Description>
     <PackageProjectUrl>https://github.com/RobThree/TimeZoneMapper</PackageProjectUrl>
     <PackageIconUrl>http://riii.nl/tzmapperlogo</PackageIconUrl>
-    <PackageLicenseUrl>https://github.com/RobThree/TimeZoneMapper/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <Product>TimeZoneMapper</Product>
     <PackageId>TimeZoneMapper</PackageId>
-    <PackageReleaseNotes>* Updated built-in timezone resource (7e10c00:2018g -&gt; 7e10c00:2018i)</PackageReleaseNotes>
+    <PackageReleaseNotes>* Updated built-in timezone resource (7e10c00:2018i -&gt; 7e11200:2019b)
+* Changed DEFAULTRESOURCEURL for OnlineValuesTZMapper</PackageReleaseNotes>
     <PackageTags>timezone cldr</PackageTags>
-    <Copyright>Copyright © Devcorner.nl 2013 - 2018</Copyright>
+    <Copyright>Copyright © Devcorner.nl 2013 - 2019</Copyright>
     <RepositoryUrl>https://github.com/RobThree/TimeZoneMapper</RepositoryUrl>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
@@ -70,6 +73,10 @@
 
   <ItemGroup>
     <None Remove="ResourceFiles\windowsZones.xml" />
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
