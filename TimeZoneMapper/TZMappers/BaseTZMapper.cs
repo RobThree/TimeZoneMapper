@@ -58,7 +58,7 @@
             var root = XDocument.Parse(xmldata).Descendants("mapTimezones").First();
             _mappings = root.Descendants("mapZone")
                 .Where(n => !n.Attribute("territory").Value.Equals("001"))
-                .SelectMany(n => n.Attribute("type").Value.Split(new[] { ' ' }), (n, t) => new { TZID = t, TZ = TryGetTimeZone(n.Attribute("other").Value, throwOnNonExisting) })
+                .SelectMany(n => n.Attribute("type").Value.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries), (n, t) => new { TZID = t, TZ = TryGetTimeZone(n.Attribute("other").Value, throwOnNonExisting) })
                 .Where(n => n.TZ != null)   //Filter out "not found" TimeZones (only happens when throwOnNonExisting is false)
                 .OrderBy(n => n.TZID)
                 .ToDictionarySafe(n => n.TZID, v => v.TZ, StringComparer.OrdinalIgnoreCase, throwOnDuplicateKey);
