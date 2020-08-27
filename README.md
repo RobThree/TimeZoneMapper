@@ -19,7 +19,7 @@ This uses the static TimeZoneMap.DefaultValuesTZMapper to map the string to the 
 TimeZoneInfo tzi = TimeZoneMap.OnlineValuesTZMapper.MapTZID("Europe/Amsterdam");
 ````
 
-This will retrieve the [information](http://www.unicode.org/cldr/charts/latest/supplemental/zone_tzid.html) from the [Unicode Consortium](http://unicode.org/)'s latest [CLDR data](http://unicode.org/repos/cldr/trunk/common/supplemental/windowsZones.xml). There is a catch though: what if, for some reason, this information is not available (for example an outbound HTTP request is blocked, the data is not available (HTTP status 404 for example) or the data is corrupt (invalid XML for some reason))? Well, simple, we just use the `OnlineWithFallbackValuesTZMapper`!
+This will retrieve the [information](https://unicode-org.github.io/cldr-staging/charts/) from the [Unicode Consortium](http://unicode.org/)'s latest [CLDR data](https://raw.githubusercontent.com/unicode-org/cldr/master/common/supplemental/windowsZones.xml). There is a catch though: what if, for some reason, this information is not available (for example an outbound HTTP request is blocked, the data is not available (HTTP status 404 for example) or the data is corrupt (invalid XML for some reason))? Well, simple, we just use the `OnlineWithFallbackValuesTZMapper`!
 ```c#
 TimeZoneInfo tzi = TimeZoneMap.OnlineWithFallbackValuesTZMapper.MapTZID("Europe/Amsterdam");
 ````

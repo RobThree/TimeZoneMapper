@@ -4,7 +4,7 @@
     <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
     <ApplicationIcon>ResourceFiles\TimezoneMapper.ico</ApplicationIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.2.28.0</Version>
+    <Version>1.2.29.0</Version>
     <Authors>RobIII</Authors>
     <Company>Devcorner.nl</Company>
     <Description>Library for mapping *N*X TimeZone ID's to windows TimeZoneInfo classes. Information is based on Unicode Inc's CLDR data files.</Description>
@@ -12,11 +12,7 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <Product>TimeZoneMapper</Product>
     <PackageId>TimeZoneMapper</PackageId>
-    <PackageReleaseNotes>* Handle multiple spaces better (as introduced in a8cb95c and reported here: https://github.com/unicode-org/cldr/commit/a8cb95c8e1399db7db3d51ba272e30b24f103ac6#r38751152).
-* Updated built-in timezone resource (7e11200:2019b)
-* Removed PackageIconUrl and use PackageIcon
-* Dropped .Net 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2, 4.7 since they are all covered by NetStandard 2.0 or Net40/Net45 builds.
-* Updated ©</PackageReleaseNotes>
+    <PackageReleaseNotes>* Updated built-in timezone resource (7e11200:2019b -&gt; 7e11500:2020a)</PackageReleaseNotes>
     <PackageTags>timezone cldr</PackageTags>
     <Copyright>Copyright © Devcorner.nl 2013 - 2020</Copyright>
     <RepositoryUrl>https://github.com/RobThree/TimeZoneMapper</RepositoryUrl>

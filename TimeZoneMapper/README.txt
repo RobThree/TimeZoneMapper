@@ -26,6 +26,6 @@ copyright holder.
 
 
 More info:
-Data source : http://unicode.org/repos/cldr/trunk/common/supplemental/windowsZones.xml
-Information : http://www.unicode.org/cldr/charts/latest/supplemental/zone_tzid.html
+Data source : https://raw.githubusercontent.com/unicode-org/cldr/master/common/supplemental/windowsZones.xml
+Information : https://unicode-org.github.io/cldr-staging/charts/
 Icon        : https://www.iconfinder.com/icons/23607/stock_timezone_icon#size=32
