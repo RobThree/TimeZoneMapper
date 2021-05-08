@@ -28,8 +28,7 @@
     <SelfBranded>False</SelfBranded>
     <Preliminary>False</Preliminary>
     <DocumentationSources>
-      <DocumentationSource sourceFile="bin\Release\net45\TimeZoneMapper.dll" />
-      <DocumentationSource sourceFile="bin\Release\net45\TimeZoneMapper.xml" />
+      <DocumentationSource sourceFile="TimeZoneMapper.csproj" />
     </DocumentationSources>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="TimeZoneMapper" isDocumented="True">The TimeZoneMapper namespace provides a simple programming interface for mapping TimeZoneID's (known from many *N*X implementations) to .Net's &lt;see cref="T:System.TimeZoneInfo"/&gt; class.</NamespaceSummaryItem>
@@ -95,6 +94,9 @@ Except as contained in this notice, the name of a copyright holder shall not be 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Win32' ">
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win32' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'ReleaseWithDocumentation' ">
+    <OutputPath>bin\ReleaseWithDocumentation\</OutputPath>
   </PropertyGroup>
   <!-- Import the SHFB build targets -->
   <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />

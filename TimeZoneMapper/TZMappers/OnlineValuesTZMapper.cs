@@ -215,9 +215,7 @@
 
                 using (var f = File.OpenRead(dest))
                 using (var fr = new StreamReader(f))
-                {
                     return fr.ReadToEnd();
-                }
             }
 
             private static bool IsFileExpired(string path, TimeSpan ttl)

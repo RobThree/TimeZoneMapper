@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
     <ApplicationIcon>ResourceFiles\TimezoneMapper.ico</ApplicationIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.2.30.0</Version>
+    <Version>1.2.31.0</Version>
     <Authors>RobIII</Authors>
     <Company>Devcorner.nl</Company>
     <Description>Library for mapping *N*X TimeZone ID's to windows TimeZoneInfo classes. Information is based on Unicode Inc's CLDR data files.</Description>
@@ -12,62 +12,37 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <Product>TimeZoneMapper</Product>
     <PackageId>TimeZoneMapper</PackageId>
-    <PackageReleaseNotes>* Updated built-in timezone resource (7e11500:2020a)</PackageReleaseNotes>
+    <PackageReleaseNotes>* Updated built-in timezone resource (7e11800:2021a)</PackageReleaseNotes>
     <PackageTags>timezone cldr</PackageTags>
-    <Copyright>Copyright © Devcorner.nl 2013 - 2020</Copyright>
+    <Copyright>Copyright © Devcorner.nl 2013 - 2021</Copyright>
     <RepositoryUrl>https://github.com/RobThree/TimeZoneMapper</RepositoryUrl>
-    <PackageLicenseExpression></PackageLicenseExpression>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>TimezoneMapper.png</PackageIcon>
+    <Configurations>Debug;Release;ReleaseWithDocumentation</Configurations>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
-    <DocumentationFile>bin\Release\net45\TimeZoneMapper.xml</DocumentationFile>
-    <NoWarn />
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningsAsErrors></WarningsAsErrors>
-  </PropertyGroup>
-  
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
-    <DocumentationFile>bin\Release\net45\TimeZoneMapper.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net451|AnyCPU'">
-    <DocumentationFile>bin\Release\net45\TimeZoneMapper.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net452|AnyCPU'">
-    <DocumentationFile>bin\Release\net45\TimeZoneMapper.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net46|AnyCPU'">
-    <DocumentationFile>bin\Release\net45\TimeZoneMapper.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net461|AnyCPU'">
-    <DocumentationFile>bin\Release\net45\TimeZoneMapper.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net462|AnyCPU'">
-    <DocumentationFile>bin\Release\net45\TimeZoneMapper.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net47|AnyCPU'">
-    <DocumentationFile>bin\Release\net45\TimeZoneMapper.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-    <DocumentationFile>bin\Release\net45\TimeZoneMapper.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp2.0|AnyCPU'">
-    <DocumentationFile>bin\Release\net45\TimeZoneMapper.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net40|AnyCPU'">
+    <DocumentationFile>bin\Release\net40\TimeZoneMapper.xml</DocumentationFile>
     <NoWarn></NoWarn>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors></WarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='ReleaseWithDocumentation|net40|AnyCPU'">
+    <DocumentationFile>bin\Release\net40\TimeZoneMapper.xml</DocumentationFile>
+    <NoWarn />
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\TimeZoneMapper.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='ReleaseWithDocumentation|netstandard2.0|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\TimeZoneMapper.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -83,7 +58,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="ResourceFiles\windowsZones.xml" />
+    <EmbeddedResource Include="ResourceFiles\windowsZones.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
