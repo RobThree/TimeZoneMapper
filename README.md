@@ -1,4 +1,4 @@
-<img src="http://riii.nl/tzmapperlogo" width="32" height="32" alt="TimeZoneMapper Logo"> TimeZoneMapper
+<img src="TimeZoneMapper/ResourceFiles/TimezoneMapper.png" width="32" height="32" alt="TimeZoneMapper Logo"> TimeZoneMapper
 ==============
 
 Library for mapping \*N\*X TimeZone ID's (e.g. `Europe/Amsterdam`) to .Net's [TimeZoneInfo](http://msdn.microsoft.com/en-us/library/system.timezoneinfo.aspx) classes. This mapping is one-way since, for example, `Europe/Amsterdam` maps to `W. Europe Standard Time` but `W. Europe Standard Time` could map to `Europe/Stockholm` or `Arctic/Longyearbyen` just as easily.
