@@ -164,3 +164,6 @@ $RECYCLE.BIN/
 
 # VS files
 .vs/
+
+# Rider files
+.idea/

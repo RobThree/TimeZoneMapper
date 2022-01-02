@@ -26,6 +26,7 @@
         ///         properties.
         ///     </para>
         /// </remarks>
+        /// <exception cref="TimeZoneNotFoundException">when a mapped zone cannot be found in the current OS. It may occur on outdated Windows versions. </exception>
         public static ITZMapper DefaultValuesTZMapper { get { return _defaultvaluesmapper.Value; } }
 
         /// <summary>
