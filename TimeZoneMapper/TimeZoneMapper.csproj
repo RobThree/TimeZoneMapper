@@ -4,7 +4,6 @@
 		<TargetFrameworks>netstandard2.0</TargetFrameworks>
 		<ApplicationIcon>ResourceFiles\TimezoneMapper.ico</ApplicationIcon>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>1.3.0.0</Version>
 		<Authors>RobIII</Authors>
 		<Company>Devcorner.nl</Company>
 		<Description>Library for mapping *N*X TimeZone ID's to windows TimeZoneInfo classes. Information is based on Unicode Inc's CLDR data files.</Description>
@@ -12,9 +11,8 @@
 		<PackageLicenseUrl></PackageLicenseUrl>
 		<Product>TimeZoneMapper</Product>
 		<PackageId>TimeZoneMapper</PackageId>
-		<PackageReleaseNotes>* Updated built-in timezone resource (7e11800:2021a)</PackageReleaseNotes>
-		<PackageTags>timezone cldr</PackageTags>
-		<Copyright>Copyright © Devcorner.nl 2013 - 2023</Copyright>
+		<PackageTags>timezone;cldr</PackageTags>
+		<Copyright>Copyright © Devcorner.nl 2013 - 2024</Copyright>
 		<RepositoryUrl>https://github.com/RobThree/TimeZoneMapper</RepositoryUrl>
 		<PackageIcon>TimezoneMapper.png</PackageIcon>
 		<Configurations>Debug;Release;ReleaseWithDocumentation</Configurations>
@@ -22,9 +20,10 @@
 		<Nullable>enable</Nullable>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<AnalysisLevel>latest</AnalysisLevel>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<NeutralLanguage>en</NeutralLanguage>
+		<RepositoryType>git</RepositoryType>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
